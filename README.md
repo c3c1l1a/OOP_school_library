@@ -32,7 +32,7 @@ Runs the app in the terminal
 
 ### Run code linters 🧪
 > Run the commands below in the terminal or `git bash`.
-> `bundle install` - to install gems
+- `bundle install` - to install gems
 - `rubocop `  to run the rubocop linter
 
 
