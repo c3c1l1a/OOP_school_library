@@ -6,7 +6,7 @@ class Person < Nameable
   attr_accessor :name, :age
   attr_reader :id
 
-  def initialize(age, name = 'Unknown', parental_permission: true)
+  def initialize(age, name = 'Unknown', parental_permission: true )
     super()
     @id = 0
     @name = name
@@ -29,9 +29,9 @@ class Person < Nameable
   end
 end
 
-person = Person.new(22, 'maximilianus')
-p person.correct_name
-capitalized_person = CapitalizeDecorator.new(person)
-p capitalized_person.correct_name
-capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
-p capitalized_trimmed_person.correct_name
+# person = Person.new(22, 'maximilianus', parental_permission: false)
+# p person.correct_name
+# capitalized_person = CapitalizeDecorator.new(person)
+# p capitalized_person.correct_name
+# capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
+# p capitalized_trimmed_person.correct_name
