@@ -6,9 +6,12 @@ class Student < Person
   def initialize(age, name, parental_permission, classroom)
     super(age, name, parental_permission: parental_permission)
     @classroom = classroom
+
+    assign_classroom 
+
   end
 
-  def asign_classroom
+  def assign_classroom
     @classroom.students << self unless @classroom.students.include? self
   end
 
@@ -17,7 +20,3 @@ class Student < Person
   end
 end
 
-# p student.age
-# p student.name
-# p student.classroom
-# p student.can_use_service?
