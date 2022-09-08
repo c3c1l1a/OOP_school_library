@@ -7,8 +7,7 @@ class Student < Person
     super(age, name, parental_permission: parental_permission)
     @classroom = classroom
 
-    assign_classroom 
-
+    assign_classroom
   end
 
   def assign_classroom
@@ -19,4 +18,3 @@ class Student < Person
     '¯\\(ツ)/¯'
   end
 end
-

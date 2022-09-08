@@ -11,26 +11,25 @@ wayan = Student.new(12, 'Wayan', true, literature_classroom)
 
 literature_classroom.students.each { |student| p student.name }
 
-
 puts "\n======================================\n"
-harry_porter = Book.new("Harry Potter", "J. K. Rowling")
-midnight_sun = Book.new("Midnight Sun", "Stephenie Meyer")
+harry_porter = Book.new('Harry Potter', 'J. K. Rowling')
+midnight_sun = Book.new('Midnight Sun', 'Stephenie Meyer')
 
-p "TWO PEOPLE ARE RENTING HARRY POTTER"
+p 'TWO PEOPLE ARE RENTING HARRY POTTER'
 Rental.new('2020-12-1', harry_porter, wayan)
-Rental.new("2021-05-16", harry_porter, camila)
-harry_porter.rentals.each { |rental| p "- #{rental.person.name} on #{rental.date}"} 
+Rental.new('2021-05-16', harry_porter, camila)
+harry_porter.rentals.each { |rental| p "- #{rental.person.name} on #{rental.date}" }
 
 puts "\n"
 puts "\n"
 
-p "TWO PEOPLE ARE RENTING MIDNIGHT SUN"
-Rental.new("2021-09-02", midnight_sun, wayan)
-Rental.new("2021-05-16", midnight_sun, kate)
-midnight_sun.rentals.each { |rental| p "- #{rental.person.name} on #{rental.date}"} 
+p 'TWO PEOPLE ARE RENTING MIDNIGHT SUN'
+Rental.new('2021-09-02', midnight_sun, wayan)
+Rental.new('2021-05-16', midnight_sun, kate)
+midnight_sun.rentals.each { |rental| p "- #{rental.person.name} on #{rental.date}" }
 
 puts "\n"
 puts "\n"
 
-p "WAYAN IS RENTING TWO BOOKS"
-wayan.rentals.each { |rental| p "- #{rental.book.title} on #{rental.date}"}
+p 'WAYAN IS RENTING TWO BOOKS'
+wayan.rentals.each { |rental| p "- #{rental.book.title} on #{rental.date}" }
