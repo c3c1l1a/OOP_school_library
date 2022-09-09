@@ -5,19 +5,22 @@ require_relative './src/book'
 require_relative './src/teacher'
 
 class App
-	attr_accessor :students
-	
 	def initialize
 		@students = []
 		@teachers = []
+		@books = []
 	end
 	
-	def add_person(type, info)
+	def create_person(type, info)
 		if (type == 'student')
 			@students << Student.new(info[:age], info[:name], info[:permission])
 		else 
 			@teachers << Teacher.new(info[:age], info[:name], info[:specialization])
 		end
+	end
+
+	def create_book(info)
+		@books << Book.new(info[:title], info[:author])
 	end
 end
 
