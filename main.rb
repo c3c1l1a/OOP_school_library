@@ -29,8 +29,8 @@ end
 
 def create_book(app)
 	book_promp = {
-		:title => (print("Title: "); gets.chomp.to_i),
-		:author => (print("Author: "); gets.chomp.to_i)
+		:title => (print("Title: "); gets.chomp),
+		:author => (print("Author: "); gets.chomp)
 	}
 	app.create_book(book_promp)
 	p "Book created successfully"
@@ -38,7 +38,7 @@ end
 def process_option(option, app)
 	case option
 	when 1
-		p '1'
+		app.list_books
 	when 2
 		p '2'
 	when 3

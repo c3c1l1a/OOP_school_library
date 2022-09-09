@@ -5,6 +5,8 @@ require_relative './src/book'
 require_relative './src/teacher'
 
 class App
+	attr_accessor :books
+
 	def initialize
 		@students = []
 		@teachers = []
@@ -22,8 +24,15 @@ class App
 	def create_book(info)
 		@books << Book.new(info[:title], info[:author])
 	end
-end
 
+	def list_books
+		if (@books.length == 0)
+			p 'No Books added Yet'
+			return
+		end
+		@books.each { |book| p "Title: #{book.title}, Author: #{book.author}" }
+	end
+end
 
 
 
