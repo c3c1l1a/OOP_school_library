@@ -10,6 +10,7 @@ class App
 	def initialize
 		@people = []
 		@books = []
+		@rentals = []
 	end
 	
 	def create_person(type, info)
@@ -24,12 +25,24 @@ class App
 		@books << Book.new(info[:title], info[:author])
 	end
 
+	def create_rental(info)
+		@rentals << Rental.new(info[:date], @books[info[:book]], @people[info[:person]])
+	end
+
 	def list_books
 		if (@books.length == 0)
 			p 'No Books added Yet'
 			return
 		end
 		@books.each { |book| p "Title: #{book.title}, Author: #{book.author}" }
+	end
+
+	def list_books_with_numbers
+		@books.each_with_index { |book, i| p "#{i}) Title: #{book.title}, Author: #{book.author}" }
+	end
+
+	def list_people_with_numbers
+		@people.each_with_index { |person, i| p "#{i}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"}
 	end
 
 	def list_people

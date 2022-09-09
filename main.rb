@@ -12,7 +12,10 @@ def show_options
 	p "7 - Exit"
 end 
 
-def create_person(option, app)
+def create_person(app)
+	print 'Do you want to create a student (1) or a teacher (2)? [Input then number]: '
+	option = gets.chomp.to_i
+
 	person_promp = {
 		:age => (print("Age: "); gets.chomp.to_i),
 		:name => ((print("Name: "); gets.chomp))
@@ -20,9 +23,12 @@ def create_person(option, app)
 	if (option == 1)
 		person_promp[:permission] = (print("Has parent permission? [Y/N]: "); gets.chomp)
 		app.create_person('student', person_promp)
-	else 
+	elsif (option == 2)
 		person_promp[:specialization] = (print("Specialization: "); gets.chomp)
 		app.create_person('teacher', person_promp)
+	else 
+		p 'Invalid Option'
+		return
 	end
 	p 'Person created successfully'
 end
@@ -35,6 +41,27 @@ def create_book(app)
 	app.create_book(book_promp)
 	p "Book created successfully"
 end
+
+def create_rental(app)
+	p "Select a book from the following list by number"
+	app.list_books_with_numbers
+	book_option = gets.chomp.to_i
+
+	puts "\n Select a person from the following list by number"
+	app.list_people_with_numbers
+	person_option = gets.chomp.to_i
+
+	puts "\n"
+
+	rental_promp = {
+		:date => (print("Date: "); gets.chomp),
+		:book => book_option,
+		:person => person_option
+	}
+	app.create_rental(rental_promp)
+	p "Rental created successfully"
+end
+
 def process_option(option, app)
 	case option
 	when 1
@@ -42,10 +69,11 @@ def process_option(option, app)
 	when 2
 		app.list_people
 	when 3
-		print 'Do you want to create a student (1) or a teacher (2)? [Input then number]: '
-		create_person(gets.chomp.to_i, app)
+		create_person(app)
 	when 4
 		create_book(app)
+	when 5
+		create_rental(app)
 	end
 
 end
