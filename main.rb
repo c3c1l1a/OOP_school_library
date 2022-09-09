@@ -40,7 +40,7 @@ def process_option(option, app)
 	when 1
 		app.list_books
 	when 2
-		p '2'
+		app.list_people
 	when 3
 		print 'Do you want to create a student (1) or a teacher (2)? [Input then number]: '
 		create_person(gets.chomp.to_i, app)

@@ -8,16 +8,15 @@ class App
 	attr_accessor :books
 
 	def initialize
-		@students = []
-		@teachers = []
+		@people = []
 		@books = []
 	end
 	
 	def create_person(type, info)
 		if (type == 'student')
-			@students << Student.new(info[:age], info[:name], info[:permission])
+			@people << Student.new(info[:age], info[:name], info[:permission])
 		else 
-			@teachers << Teacher.new(info[:age], info[:name], info[:specialization])
+			@people << Teacher.new(info[:age], info[:name], info[:specialization])
 		end
 	end
 
@@ -31,6 +30,14 @@ class App
 			return
 		end
 		@books.each { |book| p "Title: #{book.title}, Author: #{book.author}" }
+	end
+
+	def list_people
+		if (@people.length == 0)
+			p 'No people Yet'
+			return
+		end
+		@people.each { |person| p "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"}
 	end
 end
 
