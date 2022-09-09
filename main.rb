@@ -43,13 +43,26 @@ def create_book(app)
 end
 
 def create_rental(app)
+	if (app.books.length == 0 || app.people.length == 0)
+		p "Make sure to have at least one person and book"
+		return
+	end
+
 	p "Select a book from the following list by number"
 	app.list_books_with_numbers
 	book_option = gets.chomp.to_i
+	if (!(0..app.books.length).to_a.include? book_option)
+		p "Invalid Option"
+		return
+	end
 
 	puts "\n Select a person from the following list by number"
 	app.list_people_with_numbers
 	person_option = gets.chomp.to_i
+	if (!(0..app.people.length).to_a.include? person_option)
+		p "Invalid Option"
+		return
+	end
 
 	puts "\n"
 
@@ -60,6 +73,12 @@ def create_rental(app)
 	}
 	app.create_rental(rental_promp)
 	p "Rental created successfully"
+end
+
+def list_rentals(app)
+	person_id = (print("ID of person: "); gets.chomp.to_i)
+	p "Rentals: "
+	app.list_rentals(person_id)
 end
 
 def process_option(option, app)
@@ -74,6 +93,8 @@ def process_option(option, app)
 		create_book(app)
 	when 5
 		create_rental(app)
+	when 6
+		list_rentals(app)
 	end
 
 end

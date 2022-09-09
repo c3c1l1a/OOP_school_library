@@ -5,7 +5,7 @@ require_relative './src/book'
 require_relative './src/teacher'
 
 class App
-	attr_accessor :books
+	attr_accessor :books, :people
 
 	def initialize
 		@people = []
@@ -51,6 +51,18 @@ class App
 			return
 		end
 		@people.each { |person| p "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"}
+	end
+
+	def list_rentals(person_id)
+		person = @people.select { |item| item.id == person_id }
+		if (person.length > 0)
+			if (person[0].rentals.length == 0)
+				p "This person hasn't rented a book"
+			end
+			person[0].rentals.each do |rental| 
+				p "Date: #{rental.date}, Book: '#{rental.book.title}', By: #{rental.book.author}" 
+			end
+		end
 	end
 end
 
