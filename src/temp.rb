@@ -75,19 +75,3 @@ def list_rentals(app)
   app.list_rentals(person_id)
 end
 
-def process_option(option, app)
-  case option
-  when 1
-    app.list_books
-  when 2
-    app.list_people
-  when 3
-    create_person(app)
-  when 4
-    create_book(app)
-  when 5
-    create_rental(app)
-  when 6
-    list_rentals(app)
-  end
-end

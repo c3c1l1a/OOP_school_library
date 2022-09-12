@@ -1,8 +1,8 @@
-require_relative '../app'
+require_relative './student'
+require_relative './teacher'
 
-class create_person
-  def initialize(app)
-    @app = app
+class CreatePerson
+  def initialize
     @age = 0
     @name =  ''
     @permission = ''
@@ -11,29 +11,30 @@ class create_person
 
   def create_student
     puts
-    @age = get_input.to_i
-    @name =get_input
-    @permission =get_input
-    case permission
+    @age = get_input('Age: ').to_i
+    @name =get_input('Name: ')
+    @permission =get_input('Permission: ')
+    case @permission
     when 'Y'
       @permission = true
     when 'N'
       @permission = false
     end
-    @app.create_person('student', {:age => @age, :name => @name, :permission => @permission})
-    "Student created successfully"
+    puts "Student created successfully"
+    Student.new(@age, @name, @permission)
   end
 
   def create_teacher
     puts
-    @age = get_input.to_i
-    @name = get_input
-    @specialization = get_input
-    @app.create_person('teacher', {:age => @age, :name => @name, :specialization => @specialization})
-    "Teacher created successfully"
+    @age = get_input('Age: ').to_i
+    @name = get_input('Name: ')
+    @specialization = get_input('Specialization: ')
+    puts "Teacher created successfully"
+    Teacher.new(@age, @name, @specialization)
   end
 
   private
+
   def get_input(question)
     print question
     gets.chomp

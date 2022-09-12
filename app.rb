@@ -1,8 +1,8 @@
-require_relative './src/student'
 require_relative './src/classroom'
 require_relative './src/rental'
 require_relative './src/book'
-require_relative './src/teacher'
+require_relative './src/create_person'
+
 
 class App
   attr_accessor :books, :people
@@ -13,12 +13,24 @@ class App
     @rentals = []
   end
 
-  def create_person(type, info)
-    @people << if type == 'student'
-                 Student.new(info[:age], info[:name], info[:permission])
-               else
-                 Teacher.new(info[:age], info[:name], info[:specialization])
-               end
+  def get_input(question)
+    print question
+    gets.chomp
+  end
+
+  def create_person
+    option = get_input('Do you want to create a student (1) or a teacher (2)? [Input then number]: ').to_i
+    person = CreatePerson.new
+
+    case option
+    when 1
+      person = person.create_student
+    when 2
+      person = person.create_teacher
+    else return
+    end
+    
+    @people << person
   end
 
   def create_book(info)
