@@ -4,14 +4,15 @@ require_relative './trimmer_decorator'
 
 class Person < Nameable
   attr_accessor :name, :age
-  attr_reader :id
+  attr_reader :id, :rentals
 
-  def initialize(age, name = 'Unknown', parental_permission: true )
+  def initialize(age, name = 'Unknown', parental_permission: true)
     super()
-    @id = 0
+    @id = Random.rand(0...100)
     @name = name
     @age = age
     @parental_permission = parental_permission
+    @rentals = []
   end
 
   def can_use_service?
@@ -20,6 +21,10 @@ class Person < Nameable
 
   def correct_name
     @name
+  end
+
+  def add_rental(rental)
+    @rentals << rental
   end
 
   private
