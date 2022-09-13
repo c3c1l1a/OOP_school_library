@@ -30,7 +30,7 @@ class Main < UI
       app.create_rental
     when 6
       app.list_rentals
-    end 
+    end
   end
 
   def execute(app)
