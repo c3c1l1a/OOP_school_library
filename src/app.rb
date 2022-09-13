@@ -32,12 +32,15 @@ class App < UI
       teacher = teacher_ui.prompt
       @people << teacher
     end
+
+    p 'Person create sucessfully!'
   end
 
   def create_rental
     rental_ui = RentalUI.new
     rental = rental_ui.prompt(@books, @people)
     @rentals << rental
+    p 'Rental created sucessfully!'
   end
 
   def list_rentals
@@ -46,6 +49,7 @@ class App < UI
     return unless person.length.positive?
 
     p "This person hasn't rented a book" if person[0].rentals.length.zero?
+    p 'Rentals: '
     person[0].rentals.each do |rental|
       p "Date: #{rental.date}, Book: '#{rental.book.title}', By: #{rental.book.author}"
     end
@@ -55,6 +59,7 @@ class App < UI
     book_ui = BookUI.new
     book = book_ui.prompt
     @books << book
+    p 'Book create sucessfully!'
   end
 
   def list_books

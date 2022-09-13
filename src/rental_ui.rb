@@ -4,11 +4,11 @@ class RentalUI < UI
   def prompt(books, people)
     return puts 'Create books and people first' if books.length.zero? || people.length.zero?
 
-    person_option = person_prompt(people)
-    return unless (0..people.length).to_a.include? person_option
-
     book_option = book_prompt(books)
     return unless (0..books.length).to_a.include? book_option
+
+    person_option = person_prompt(people)
+    return unless (0..people.length).to_a.include? person_option
 
     date = get_input(['Date: '])
 
