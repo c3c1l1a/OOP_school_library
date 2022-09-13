@@ -1,13 +1,3 @@
-
-
-
-
-
-
-
-
-
-
 def create_person(app)
   p 'Do you want to create a student (1) or a teacher (2)? [Input then number]: '
   option = gets.chomp.to_i
@@ -74,4 +64,3 @@ def list_rentals(app)
   p 'Rentals: '
   app.list_rentals(person_id)
 end
-

@@ -17,7 +17,7 @@ class Main < UI
   end
 
   def execute(app)
-    loop do 
+    loop do
       prompt
       case @option
       when 1
@@ -32,15 +32,11 @@ class Main < UI
         app.create_rental
       when 6
         app.list_rentals
-      when 7 
-        return
+      else return
       end
     end
   end
-
-end  
+end
 
 main = Main.new
 main.execute(App.new)
-
-

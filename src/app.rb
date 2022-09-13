@@ -5,6 +5,7 @@ require_relative './book_ui'
 
 class App < UI
   def initialize
+    super()
     @people = []
     @books = []
     @rentals = []
@@ -22,23 +23,22 @@ class App < UI
     @option = get_input(['Do you want to create a student (1) or a teacher (2)? [Input then number]: ']).to_i
     case @option
     when 1
-      studentUI = StudentUI.new
-      student = studentUI.prompt
+      student_ui = StudentUI.new
+      student = student_ui.prompt
       @people << student
 
-    when 2 
-      teacherUI = TeacherUI.new
-      teacher = teacherUI.prompt
+    when 2
+      teacher_ui = TeacherUI.new
+      teacher = teacher_ui.prompt
       @people << teacher
-    else return 
     end
-  end 
+  end
 
   def create_rental
-    rentalUI = RentalUI.new
-    rental = rentalUI.prompt(@books, @people)
+    rental_ui = RentalUI.new
+    rental = rental_ui.prompt(@books, @people)
     @rentals << rental
-  end 
+  end
 
   def list_rentals
     person_id = get_input(['ID of person: ']).to_i
@@ -52,8 +52,8 @@ class App < UI
   end
 
   def create_book
-    bookUI = BookUI.new
-    book = bookUI.prompt
+    book_ui = BookUI.new
+    book = book_ui.prompt
     @books << book
   end
 
@@ -65,4 +65,3 @@ class App < UI
     @books.each { |book| p "Title: #{book.title}, Author: #{book.author}" }
   end
 end
-

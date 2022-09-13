@@ -6,5 +6,5 @@ class TeacherUI < UI
     name = get_input(['Name: '])
     specialization = get_input(['Specialization: '])
     Teacher.new(age, name, specialization)
-  end 
+  end
 end
