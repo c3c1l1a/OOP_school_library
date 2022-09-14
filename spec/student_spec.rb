@@ -23,5 +23,4 @@ describe Student do
       @student.name.should be_an_instance_of String
     end
   end
-
 end

@@ -21,6 +21,4 @@ describe Classroom do
       expect(classroom1.students).to be_kind_of Array
     end
   end
-
-
 end

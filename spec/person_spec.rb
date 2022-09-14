@@ -2,8 +2,6 @@ require 'spec_helper'
 require_relative '../src/person'
 
 describe Person do
-  
-
   describe 'test self' do
     before(:each) do
       @person = Person.new(23, "Tilisi")
@@ -33,9 +31,10 @@ describe Person do
     end
   end
 
-  describe 'Can add rental' do 
+  describe 'Can add rental' do
     class FakeRental
       attr_reader :person
+
       def initialize(date, book, person)
         @date = date
         @book = book
@@ -43,7 +42,7 @@ describe Person do
       end
     end
 
-    let (:person) {Person.new(10, 'Jerry', parental_permission:false)}
+    let (:person) { Person.new(10, 'Jerry', parental_permission: false) }
 
     describe '#add_rental' do
       before(:each) do
@@ -64,8 +63,6 @@ describe Person do
       it 'tests rental and person relationship' do
         expect(person.rentals[0].person.name).to eql @rental1.person.name
       end
-
     end
   end
-
 end

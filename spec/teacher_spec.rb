@@ -27,5 +27,4 @@ describe Teacher do
       expect(teacher1.can_use_service?).to be true
     end
   end
-
 end
