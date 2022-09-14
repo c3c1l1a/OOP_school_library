@@ -2,7 +2,6 @@ require_relative '../src/book'
 require_relative 'spec_helper'
 
 describe Book do
-
   describe "#new" do
     let (:book) { Book.new('Game of thrones', 'G. Martin') }
 
@@ -12,12 +11,13 @@ describe Book do
 
     it "checks if book author is correct" do
       expect(book.author).to eql 'G. Martin'
-    end  
+    end
   end
 
   describe '#add_rental' do
     class FakeRental
       attr_reader :book
+
       def initialize(date, book, person)
         @date = date
         @book = book
@@ -25,8 +25,7 @@ describe Book do
       end
     end
 
-    let (:book) {Book.new('Ruby', 'Mark')}
-    
+    let (:book) { Book.new('Ruby', 'Mark') }
 
     describe '#add_renter' do
       before (:each) do
@@ -36,7 +35,7 @@ describe Book do
 
       it 'add a single rental' do
         expect(book.rentals.length).to eql 1
-      end 
+      end
 
       it 'book has a rental' do
         expect(book.rentals[0]).to equal @rental
@@ -46,5 +45,5 @@ describe Book do
         expect(book).to equal @rental.book
       end
     end
-  end 
+  end
 end
