@@ -1,112 +1,47 @@
-#!/usr/bin/env ruby
-require_relative './app'
+require_relative './src/ui'
+require_relative './src/app'
 
-def show_options
-  puts "\nPlease choose an option by entering a number"
-  p '1 - List of all books'
-  p '2 - List of all people'
-  p '3 - Create a person'
-  p '4 - Create a book'
-  p '5 - Create a rental'
-  p '6 - List all rentals for a given person id'
-  p '7 - Exit'
-end
-
-def create_person(app)
-  p 'Do you want to create a student (1) or a teacher (2)? [Input then number]: '
-  option = gets.chomp.to_i
-  person_promp = {
-    age: (print('Age: ')
-          gets.chomp.to_i),
-    name: (print('Name: ')
-           gets.chomp)
-  }
-  case option
-  when 1
-    person_promp[:permission] = (print('Has parent permission? [Y/N]: ')
-                                 gets.chomp)
-    app.create_person('student', person_promp)
-  when 2
-    person_promp[:specialization] = (print('Specialization: ')
-                                     gets.chomp)
-    app.create_person('teacher', person_promp)
-  else return
-  end
-  p 'Person created successfully'
-end
-
-def create_book(app)
-  book_promp = {
-    title: (print('Title: ')
-            gets.chomp),
-    author: (print('Author: ')
-             gets.chomp)
-  }
-  app.create_book(book_promp)
-  p 'Book created successfully'
-end
-
-def create_rental(app)
-  if app.books.length.zero? || app.people.length.zero?
-    p 'Make sure to have at least one person and book'
-    return
+class Main < UI
+  def prompt
+    puts "\nPlease choose an option by entering a number"
+    questions = [
+      "1 - List of all books\n",
+      "2 - List of all people\n",
+      "3 - Create a person\n",
+      "4 - Create a book\n",
+      "5 - Create a rental\n",
+      "6 - List all rentals for a given person id\n",
+      "7 - Exit\n\n"
+    ]
+    @option = get_input(questions).to_i
   end
 
-  p 'Select a book from the following list by number'
-  app.list_books_with_numbers
-  book_option = gets.chomp.to_i
-  return unless (0..app.books.length).to_a.include? book_option
+  def run_app(app)
+    case @option
+    when 1
+      app.list_books
+    when 2
+      app.list_people
+    when 3
+      app.create_person
+    when 4
+      app.create_book
+    when 5
+      app.create_rental
+    when 6
+      app.list_rentals
+    end
+  end
 
-  puts "\n Select a person from the following list by number"
-  app.list_people_with_numbers
-  person_option = gets.chomp.to_i
-  return unless (0..app.people.length).to_a.include? person_option
-
-  rental_promp = {
-    date: (print('Date: ')
-           gets.chomp),
-    book: book_option,
-    person: person_option
-  }
-  app.create_rental(rental_promp)
-  p 'Rental created successfully'
-end
-
-def list_rentals(app)
-  person_id = (print('ID of person: ')
-               gets.chomp.to_i)
-  p 'Rentals: '
-  app.list_rentals(person_id)
-end
-
-def process_option(option, app)
-  case option
-  when 1
-    app.list_books
-  when 2
-    app.list_people
-  when 3
-    create_person(app)
-  when 4
-    create_book(app)
-  when 5
-    create_rental(app)
-  when 6
-    list_rentals(app)
+  def execute(app)
+    puts "\nWelcome to School Library app"
+    loop do
+      prompt
+      run_app(app)
+      return puts "Thank you for using this app! \n" if @option == 7
+    end
   end
 end
 
-def main
-  p 'Welcome to School Library App'
-  puts "\n"
-
-  app = App.new
-  loop do
-    show_options
-    option = gets.chomp.to_i
-    process_option(option, app)
-    break if option == 7
-  end
-end
-
-main
+main = Main.new
+main.execute(App.new)
