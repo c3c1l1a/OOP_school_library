@@ -3,7 +3,7 @@ require_relative '../src/student'
 
 describe Student do
   before :each do
-    @student = Student.new 21, "Tilisi", true
+    @student = Student.new 21, 'Tilisi', true
   end
 
   describe 'Test instance' do

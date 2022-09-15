@@ -1,13 +1,13 @@
 require_relative '../src/base_decorator'
 require_relative 'spec_helper'
 
-describe BaseDecorator do
-  class FakeNameable
-    def correct_name
-      raise NotImplementedError
-    end
+class FakeNameable
+  def correct_name
+    raise NotImplementedError
   end
+end
 
+describe BaseDecorator do
   describe '#correct_name' do
     it 'raises a NotImplementedError' do
       nameable = FakeNameable.new

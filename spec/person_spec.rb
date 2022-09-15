@@ -1,10 +1,20 @@
 require 'spec_helper'
 require_relative '../src/person'
 
+class FakeRental
+  attr_reader :person
+
+  def initialize(date, book, person)
+    @date = date
+    @book = book
+    @person = person
+  end
+end
+
 describe Person do
   describe 'test self' do
     before(:each) do
-      @person = Person.new(23, "Tilisi")
+      @person = Person.new(23, 'Tilisi')
     end
     it 'test class' do
       expect(@person.class).to be(Person)
@@ -13,7 +23,7 @@ describe Person do
 
   describe 'test correct name' do
     before(:each) do
-      @person = Person.new(23, "Tilisi")
+      @person = Person.new(23, 'Tilisi')
     end
 
     it 'test name' do
@@ -23,7 +33,7 @@ describe Person do
 
   describe 'Age' do
     before(:each) do
-      @person = Person.new(23, "Tilisi")
+      @person = Person.new(23, 'Tilisi')
     end
 
     it 'Test if old enough' do
@@ -32,17 +42,7 @@ describe Person do
   end
 
   describe 'Can add rental' do
-    class FakeRental
-      attr_reader :person
-
-      def initialize(date, book, person)
-        @date = date
-        @book = book
-        @person = person
-      end
-    end
-
-    let (:person) { Person.new(10, 'Jerry', parental_permission: false) }
+    let(:person) { Person.new(10, 'Jerry', parental_permission: false) }
 
     describe '#add_rental' do
       before(:each) do

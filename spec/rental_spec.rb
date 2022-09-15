@@ -1,29 +1,29 @@
 require_relative '../src/rental'
 require_relative 'spec_helper'
 
+class FakeBook
+  attr_accessor :title, :author, :rentals
+
+  def initialize(title, author)
+    @title = title
+    @author = author
+    @rentals = []
+  end
+end
+
+class FakePerson
+  attr_accessor :title, :author, :rentals
+
+  def initialize(age, name = 'Unknown', parental_permission: true)
+    @id = Random.rand(0...100)
+    @name = name
+    @age = age
+    @parental_permission = parental_permission
+    @rentals = []
+  end
+end
+
 describe Rental do
-  class FakeBook
-    attr_accessor :title, :author, :rentals
-
-    def initialize(title, author)
-      @title = title
-      @author = author
-      @rentals = []
-    end
-  end
-
-  class FakePerson
-    attr_accessor :title, :author, :rentals
-
-    def initialize(age, name = 'Unknown', parental_permission: true)
-      @id = Random.rand(0...100)
-      @name = name
-      @age = age
-      @parental_permission = parental_permission
-      @rentals = []
-    end
-  end
-
   describe '#new' do
     before(:each) do
       @book = FakeBook.new('Game of thrones', 'G. Martin')
